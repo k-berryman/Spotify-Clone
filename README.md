@@ -152,5 +152,42 @@ Now for a **Server Side Render** (ssr).. Add
 This runs on the server before the page gets delivered every time.
 Render it on the server, then deliver it to the client
 
+## Customizing the Signin Page
+In `login.js`
 Now add the Spotify logo
-Now add a JSX block `{ }` to map over each provider and make a button for them 
+Now add a JSX block `{ }` to map over each provider and make a button for them
+
+`items-center` className adjusts horizontal axis
+`justify-center` className adjusts vertical axis
+
+Add `             onClick={() => signIn(provider.id, { callbackUrl: "/" })}
+` to the button to handle the click
+
+Now go back to the Spotify Developer Dashboard and go to settings, under redirect URIs enter http://localhost:3000/api/auth/callback/spotify, click add, click save
+
+** ALSO DO THE ABOVE WHEN DEPLOYING **
+
+Now `scopes` generates a permissions agreement, just agree
+
+To sign out, add a button with `onClick={() => signOut()`
+and import `import { signOut } from "next-auth/react";`
+
+## Persisting State
+
+If I'm logged out, it currently lets us still have access to the home page
+
+To use `useSession` in `Sidebar.js` go to `_app.js` and add in a session provider with `import { SessionProvider } from "next-auth/react"` and add `<SessionProvider>` as a higher order component (it's higher order because it wraps the rest of the app).
+
+This will allow us to persist our logged in state as we navigate through our app.
+
+Back in `Sidebar.js` add in
+
+
+
+         const { data: session, status } = useSession();
+         console.log(session)
+
+and test if the data persists... it does!!!! that's crazy!!!!
+logging in and out works!!!!!
+
+## Middleware
