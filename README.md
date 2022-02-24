@@ -1,27 +1,48 @@
-# Next.js + Tailwind CSS Example
+# Spotify Clone
+Based on a tutorial from Sonny! https://www.youtube.com/watch?v=3xrko3GpYoU&t=1s&ab_channel=SonnySangha
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+Nextjs12, TailwindCSS, SpotifyAPI, NextAuth, Recoil
 
-## Preview
+Nextjs 12 is a huge upgrade — it adds Middleware & server-rendered components
+Debouncing is a technique to prevent ourselves from spamming APIs
+JWT OAuth tokens persist log-in state. We'll talk about refreshing user tokens in a secure way. Particularly access/refresh tokens\
+Recoil manages state
+We'll use flexbox & cssgrid
+Nextjs has a built in router, so we don't need react-router when we use Nextjs
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
+# Setting Up
+`npx create-next-app -e with-tailwindcss spotify-clone`
+`cd spotify-clone`
+Open it up in Atom
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+Go to `https://developer.spotify.com/dashboard/` , login, create an app
 
-## Deploy your own
+# Initializing the Build
+`npm run dev`
+Go to `pages/index.js`, which is actually `index.tsx` in my case, which is a TypeScript file written using JSX syntax
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+# Build Layout
+Edit `index.tsx` to have comments where the components will go such as `{/* Sidebar */}`
+Create `components` dir
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+# Build the Sidebar Component
+Under `components`, create `Sidebar.js`
 
-## How to use
+    function Sidebar() {
+      return(
+        <div>
+          <h1> I am a side bar </h1>
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+        </div>
+      )
+    }
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
+    export default Sidebar
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+
+In `index.tsx`,
+`import Sidebar from '../components/Sidebar'`
+`<Sidebar />`
+
+heroicons (https://heroicons.com/)
+`npm i @heroicons/react`
