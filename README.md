@@ -200,7 +200,7 @@ This logic just checks if it's a request or if a token is present, if so, they c
 
 Restart the server
 
-# Build the Center Component
+## Build the Center Component
 In `components` folder, create `Center.js`
 
 In `index.tsx`, get rid of the placeholder comment (`{/* Center */}`) with `<Center />` and import it
@@ -210,3 +210,54 @@ In `index.tsx`, get rid of the placeholder comment (`{/* Center */}`) with `<Cen
 Go to `tailwind.config.js` under plugins add `require("tailwind-scrollbar-hide")`
 
 Installing Lodash `npm i lodash` to shuffle
+
+## Implementing the useSpotify Custom Hook
+Create `hooks` folder. In that, create `useSpotify.js`
+
+This sets the session's access token by accessing methods in our spotifyApi
+
+We're initializing the Spotify object once, then we reuse it throughout the app
+
+Include spotifyApi in Sidebar.js by using the new hook `const spotifyApi = useSpotify()`
+
+## Finalizing the Sidebar
+
+        // dependencies are session & spotifyApi
+      useEffect(() => {
+        // if the access token is set
+        if(spotifyApi.getAccessToken()) {
+          // retrieve and set playlists
+          spotifyApi.getUserPlaylists().then((data) => {
+            setPlaylists(data.body.items)
+          })
+        }
+      }, [session, spotifyApi])
+
+      console.log(playlists)
+
+
+    {/* Playlists */}
+            {playlists.map((playlist) => (
+              <p key={playlist.id} className="cursor-pointer hover:text-white">{playlist.name}</p>
+            ))}
+
+What if we want to store which playlist is click? You coulddd use useState, but that only saves it at the component level. This is where we need something like Redux, a ContextAPI, or Recoil
+
+## Implementing Recoil
+Recoil is a simple way to have global state management
+Go to https://recoiljs.org/ and click get started
+`npm install recoil`
+also wrap our app in `<RecoilRoot></RecoilRoot>` in `_app.tsx`
+
+      <SessionProvider session={session}>
+          <RecoilRoot>
+            <Component {...pageProps} />
+          </RecoilRoot>
+        </SessionProvider>
+
+We have a global store that can be pushed or pulled into/from
+
+We're going to create something called an Atom, which are sections that have context. Create a folder called `atoms`
+Create `playlistAtom.js`
+
+Atoms need unique keys
