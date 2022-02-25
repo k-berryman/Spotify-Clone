@@ -304,3 +304,13 @@ Print out the song names
 
 ## Add Song Component
 Create a `Song` component too
+Add images
+
+Make center scrollable with `overflow-y-scroll scrollbar-hide` on Center component main div
+
+Duration uses our new file `lib/time.js`
+
+Change Logout button to be in the center component
+
+### Build a songAtom
+Create a song atom to keep track of which song is playing
