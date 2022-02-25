@@ -191,3 +191,22 @@ and test if the data persists... it does!!!! that's crazy!!!!
 logging in and out works!!!!!
 
 ## Middleware
+
+A powerful part of Next.js 12.
+Every single time a user makes a request to our site, pass it through a server which checks it, this is called middleware. Our middleware checks for a token. If no token, get redirected! Gets caught between when messages are sent from client to server and vise verca.
+
+In `pages` folder add a file named `_middleware.js`
+This logic just checks if it's a request or if a token is present, if so, they can go on. If not, we don't let them in!!!
+
+Restart the server
+
+# Build the Center Component
+In `components` folder, create `Center.js`
+
+In `index.tsx`, get rid of the placeholder comment (`{/* Center */}`) with `<Center />` and import it
+
+`npm install tailwind-scrollbar-hide`
+
+Go to `tailwind.config.js` under plugins add `require("tailwind-scrollbar-hide")`
+
+Installing Lodash `npm i lodash` to shuffle
