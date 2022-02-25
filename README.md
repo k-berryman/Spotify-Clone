@@ -1,6 +1,8 @@
 # Spotify Clone
 Based on a tutorial from Sonny! https://www.youtube.com/watch?v=3xrko3GpYoU&t=1s&ab_channel=SonnySangha
 
+Note - make sure to "activate" / recently use a spotify device with my account for this to work
+
 Nextjs12, TailwindCSS, SpotifyAPI, NextAuth, Recoil
 
 Nextjs 12 is a huge upgrade — it adds Middleware & server-rendered components
@@ -314,3 +316,7 @@ Change Logout button to be in the center component
 
 ### Build a songAtom
 Create a song atom to keep track of which song is playing
+
+uri stands for uniform source identifier
+
+Songs play when clicked!
