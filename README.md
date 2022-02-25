@@ -261,3 +261,46 @@ We're going to create something called an Atom, which are sections that have con
 Create `playlistAtom.js`
 
 Atoms need unique keys
+
+## Finalizing the Center Component
+
+    useEffect(() => {
+        spotifyApi
+          .getPlaylist(playlistId)
+          .then((data) => {
+            setPlaylist(data.body)
+          })
+          .catch((err) => console.log("error: ", err));
+      }, [spotifyApi, playlistId])
+
+
+start with a mobile-first attitude
+text-2xl md:text-3xl xl:text-5xl
+
+## Add Songs Component
+Add in a `Songs` component
+
+Have the server render the user in beforehand.
+Go to `index.tsx`
+
+    export async function getServerSideProps(context) {
+      const session = await getSession(context);
+
+      return {
+        props: {
+          session
+        }
+      }
+    }
+
+Print out the song names
+
+    <div className="text-white">
+          {playlist?.tracks.items.map((track) => (
+            <div>{track.track.name}</div>
+          ))}
+
+        </div>
+
+## Add Song Component
+Create a `Song` component too
