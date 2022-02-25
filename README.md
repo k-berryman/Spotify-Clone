@@ -338,3 +338,5 @@ Shows encapsulating an async function in a useEffect
 Pass the header so spotify knows im legit
 
 Now we can access song info wherever we want. this hook handles getting the spotify data so we don't have to repeat it every time.
+
+## Build the left side of the Player component
