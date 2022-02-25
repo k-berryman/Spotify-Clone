@@ -329,3 +329,12 @@ This is the button bar
 Add `<Player />` in index
 div is className="sticky bottom-0"
 Create Player component
+
+## Implementing the useSongInfo Custom Hook
+Take the ID, and then give the song info back needed for playing
+In `hooks` folder, create `useSongInfo.js`
+
+Shows encapsulating an async function in a useEffect
+Pass the header so spotify knows im legit
+
+Now we can access song info wherever we want. this hook handles getting the spotify data so we don't have to repeat it every time.
