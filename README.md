@@ -3,6 +3,8 @@ Based on a tutorial from Sonny! https://www.youtube.com/watch?v=3xrko3GpYoU&t=1s
 
 Note - make sure to "activate" / recently use a spotify device with my account for this to work
 
+Run with `npm run dev`
+
 Nextjs12, TailwindCSS, SpotifyAPI, NextAuth, Recoil
 
 Nextjs 12 is a huge upgrade — it adds Middleware & server-rendered components
@@ -320,3 +322,10 @@ Create a song atom to keep track of which song is playing
 uri stands for uniform source identifier
 
 Songs play when clicked!
+
+## Building the Player Component
+This is the button bar
+
+Add `<Player />` in index
+div is className="sticky bottom-0"
+Create Player component
