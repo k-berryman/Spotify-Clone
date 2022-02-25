@@ -24,7 +24,8 @@ async function refreshAccessToken(token) {
 
     return {
       ...token,
-      error: 'refreshAccessToken Error'
+      error: 'RefreshAccessTokenError'
+      // error is handled in useSpotify hook
     }
   }
 }
