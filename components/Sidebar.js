@@ -18,9 +18,15 @@ function Sidebar() {
   // dependencies are session & spotifyApi
   useEffect(() => {
     // if the access token is set
-    console.log("woo")
+    if(spotifyApi.getAccessToken()) {
+      // retrieve and set playlists
+      spotifyApi.getUserPlaylists().then((data) => {
+        setPlaylists(data.body.items)
+      })
     }
-  , [session])
+  }, [session, spotifyApi])
+
+  console.log(playlists)
 
   console.log(session)
   return(
@@ -64,14 +70,9 @@ function Sidebar() {
 
 
         {/* Playlists */}
-        <p className="cursor-pointer hover:text-white">Playlist name...</p>
-        <p className="cursor-pointer hover:text-white">Playlist name...</p>
-        <p className="cursor-pointer hover:text-white">Playlist name...</p>
-        <p className="cursor-pointer hover:text-white">Playlist name...</p>
-        <p className="cursor-pointer hover:text-white">Playlist name...</p>
-        <p className="cursor-pointer hover:text-white">Playlist name...</p>
-        <p className="cursor-pointer hover:text-white">Playlist name...</p>
-        <p className="cursor-pointer hover:text-white">Playlist name...</p>
+        {playlists.map((playlist) => (
+          <p key={playlist.id} className="cursor-pointer hover:text-white">{playlist.name}</p>
+        ))}
 
       </div>
     </div>
