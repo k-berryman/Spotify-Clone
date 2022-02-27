@@ -380,7 +380,7 @@ Add the following code, so we know the current track for the bottom left img pre
         }
       }
 
-# Building the middle of the Player Component
+## Building the middle of the Player Component
 Import Icons for buttons
 Create a css file for all those buttons
 If `styles/globals.css` exists, got there. If not, create it
@@ -399,3 +399,45 @@ Create our own custom button in there
 broken from api
 
 Handle the play/pause click by creating the helper function called `handlePlayPause`
+
+## Building the right of the Player Component
+Volume control
+
+      <div className="flex items-center space-x-3 md:space-x-4 justify-end pr-5">
+        <VolumeDownIcon className="button" />
+        <input type="range" value="" min={0} max={100} />
+        <VolumeUpIcon className="button" />
+      </div>
+
+Now control the volume
+
+## Debouncing explained
+On the volume input, add `onChanged`
+We're going to have a useEffect that listens to the volume, which then sets the volume on spotify
+
+Think about a slider changing from 50 to 100% volume ... you're making 50 requests ... that's a problem ... the solution? a **debounce**!
+
+It waits for a certain time period (.5 second / 1 second) and then make the request
+
+Instead of 50 requests, just make 1
+
+## Changing Volume Functionality using Debounce
+We'll be using useCallback
+
+Add another useEffect dependent on the volume to track volume changes
+
+Create function `debouncedAdjustVolume` to change volume to the new volume. Call this function in the volume-dependent useEffect
+
+`useCallback`
+import `debounce` from `lodash`
+
+      const debouncedAdjustVolume = useCallback(
+        debounce((volume) => {
+          spotifyApi.setVolume(volume)
+        }, 500), []
+      )
+Check out that 500! That's a timer of 500ms!
+
+I think 500ms is too long, so I made it 300ms
+
+It waits for the changes/events to stop!
