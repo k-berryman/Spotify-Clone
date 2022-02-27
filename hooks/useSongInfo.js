@@ -23,6 +23,7 @@ function useSongInfo() {
         setSongInfo(trackInfo)
       }
     }
+    fetchSongInfo()
   }, [currentIdTrack, spotifyApi])
 
   return songInfo

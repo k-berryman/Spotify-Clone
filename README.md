@@ -340,3 +340,62 @@ Pass the header so spotify knows im legit
 Now we can access song info wherever we want. this hook handles getting the spotify data so we don't have to repeat it every time.
 
 ## Build the left side of the Player component
+
+          {/* Left */}
+      <div>
+        <img
+          className="hidden md:inline h-10 w-10"
+          src={songInfo?.album.images?.[0]?.url}
+          alt="" />
+      </div>
+    </div>
+
+Make sure to use the useSongInfo Hook
+`  const songInfo = useSongInfo()
+`
+
+Remember - they may be empty, so use optional chaining with `?.` to protect our code
+
+Add the following code so when the page is refreshed, the bottom left view icon isn't empty
+
+      useEffect(() => {
+    if(spotifyApi.getAccessToken() && !currentTrackId) {
+      fetchCurrentSong();
+      setVolume(50)
+
+        }
+      }, [currentTrackId, spotifyApi, session])
+
+Add the following code, so we know the current track for the bottom left img preview
+
+    const fetchCurrentSong = () => {
+    if(!songInfo) {
+      spotifyApi.getMyCurrentPlayingTrack().then((data) => {
+        setCurrentTrackId(data.body?.item?.id)
+
+        spotifyApi.getMyCurrentPlaybackState().then((data) => {
+          setIsPlaying(data.body?.is_playing)
+        })
+          })
+        }
+      }
+
+# Building the middle of the Player Component
+Import Icons for buttons
+Create a css file for all those buttons
+If `styles/globals.css` exists, got there. If not, create it
+Check that `import '../styles/globals.css'` is in `_app.tsx`
+
+Create our own custom button in there
+
+        @layer components {
+      .button {
+        @apply h-5 w-5;
+      }
+    }
+
+{/*onClick={() => spotifyApi.skipToPrevious()*/}
+          {/*onClick={() => spotifyApi.skipToNext()*/}
+broken from api
+
+Handle the play/pause click by creating the helper function called `handlePlayPause`
